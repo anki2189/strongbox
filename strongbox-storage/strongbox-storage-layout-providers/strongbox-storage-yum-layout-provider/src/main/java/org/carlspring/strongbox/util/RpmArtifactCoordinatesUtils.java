@@ -97,7 +97,7 @@ public class RpmArtifactCoordinatesUtils
     public static String parseRelease(String fileName)
     {
         String release;
-        Matcher matcher =  RPM_PACKAGE_RELEASE_REGEXP_PATTERN.matcher(fileName);
+        Matcher matcher = RPM_PACKAGE_RELEASE_REGEXP_PATTERN.matcher(fileName);
 
         if (matcher.find())
         {

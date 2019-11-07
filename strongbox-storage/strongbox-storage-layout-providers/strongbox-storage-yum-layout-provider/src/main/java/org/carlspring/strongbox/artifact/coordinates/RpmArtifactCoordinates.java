@@ -33,12 +33,13 @@ import java.util.Map;
  */
 @Entity
 @SuppressWarnings("serial")
-@XmlRootElement(name = "PypiArtifactCoordinates")
+@XmlRootElement(name = "RpmArtifactCoordinates")
 @XmlAccessorType(XmlAccessType.NONE)
 @ArtifactCoordinatesLayout(name = RpmArtifactCoordinates.LAYOUT_NAME, alias = RpmArtifactCoordinates.LAYOUT_ALIAS)
 public class RpmArtifactCoordinates
         extends AbstractArtifactCoordinates<RpmArtifactCoordinates, SemanticVersion>
 {
+
     public static final String LAYOUT_NAME = "RPM";
 
     public static final String LAYOUT_ALIAS = "rpm";
@@ -74,6 +75,7 @@ public class RpmArtifactCoordinates
         {
             setArchitecture(arch);
         }
+
         setExtension();
     }
 
@@ -83,6 +85,7 @@ public class RpmArtifactCoordinates
                                   @NotNull RpmPackageType packageType)
     {
         this();
+
         setId(baseName);
         setVersion(version);
         setRelease(release);
@@ -149,7 +152,6 @@ public class RpmArtifactCoordinates
         setCoordinate(EXTENSION, DEFAULT_EXTENSION);
     }
 
-
     public String getPackageType()
     {
         return getCoordinate(PACKAGE_TYPE);
@@ -160,15 +162,12 @@ public class RpmArtifactCoordinates
         return getCoordinate(EXTENSION);
     }
 
-
     @Override
     public SemanticVersion getNativeVersion()
     {
         String version = getVersion();
 
-        return version == null || version.isEmpty()
-                ? null
-                : SemanticVersion.parse(version);
+        return version == null || version.isEmpty() ? null : SemanticVersion.parse(version);
     }
 
     @Override
@@ -187,20 +186,20 @@ public class RpmArtifactCoordinates
         if (RpmPackageType.SOURCE.getPostfix().equals(getPackageType()))
         {
             path = String.format("%s-%s-%s.%s.%s",
-                    getId(),
-                    getVersion(),
-                    getRelease(),
-                    getPackageType(),
-                    getExtension());
+                                 getId(),
+                                 getVersion(),
+                                 getRelease(),
+                                 getPackageType(),
+                                 getExtension());
         }
         else
         {
             path = String.format("%s-%s-%s.%s.%s",
-                    getId(),
-                    getVersion(),
-                    getRelease(),
-                    getArchitecture(),
-                    getExtension());
+                                 getId(),
+                                 getVersion(),
+                                 getRelease(),
+                                 getArchitecture(),
+                                 getExtension());
         }
 
         return path;
@@ -214,4 +213,5 @@ public class RpmArtifactCoordinates
     {
         return RpmArtifactCoordinatesUtils.parse(path);
     }
+
 }
