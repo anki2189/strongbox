@@ -5,15 +5,12 @@ import org.carlspring.strongbox.domain.RpmPackageType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.parallel.Execution;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
 /**
  * Test class for testing functionality of parsing, creating and validating Rpm artifact coordinates
