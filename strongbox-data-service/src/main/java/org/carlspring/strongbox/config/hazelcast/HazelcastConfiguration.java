@@ -130,6 +130,10 @@ public class HazelcastConfiguration
                                           .addMapConfig(authenticationCacheConfig(CacheName.User.AUTHENTICATIONS));
         config.setGroupConfig(new GroupConfig(groupConfigName, groupConfigPassword));
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(enableMulticastConfig);
+        
+        ManagementCenterConfig managementCenterConfig = new ManagementCenterConfig();
+        managementCenterConfig.setEnabled(true).setUrl("http://localhost:8080/hazelcast-mancenter");
+        config.setManagementCenterConfig(managementCenterConfig);
 
         if (enableMulticastConfig)
         {
