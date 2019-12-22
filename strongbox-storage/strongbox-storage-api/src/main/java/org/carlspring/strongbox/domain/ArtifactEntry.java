@@ -3,13 +3,16 @@ package org.carlspring.strongbox.domain;
 import org.carlspring.strongbox.artifact.ArtifactTag;
 import org.carlspring.strongbox.artifact.coordinates.AbstractArtifactCoordinates;
 import org.carlspring.strongbox.artifact.coordinates.ArtifactCoordinates;
+import org.carlspring.strongbox.artifact.metadata.ArtifactMetadata;
 import org.carlspring.strongbox.data.domain.GenericEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import java.util.Date;
 import java.util.HashSet;
@@ -44,6 +47,10 @@ public class ArtifactEntry
 
     @Embedded
     private ArtifactArchiveListing artifactArchiveListing;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "objectId")
+    private ArtifactMetadata artifactMetadata;
 
     private Long sizeInBytes;
 
